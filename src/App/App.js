@@ -41,43 +41,40 @@ class DraggyInner extends React.Component {
 class Draggy extends React.Component {
   render() {
     return <Draggable data="Whatevs" style={{margin: 7.5}}>
-        <DropZone>
-          <DraggyInner />
-        </DropZone>
+      <DropZone>
+        <DraggyInner />
+      </DropZone>
     </Draggable>
   }
 }
 
 class DragDropTest extends React.Component {
-    constructor(props) {
-        super(props);
-        this.displayName = 'DragDropTest';
-    }
-    render() {
-        return <DragContainer>
-        <View style={{flex: 1, padding: 20, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around'}}>
-             <DropZone onDrop={e => console.log("hello")}>
-              <MyDropZoneContent />
-            </DropZone>
-            <DropZone onDrop={e => console.log("hi")}>
-              <MyDropZoneContent />
-            </DropZone>
+  constructor(props) {
+    super(props);
+    this.displayName = 'DragDropTest';
+  }
+  render() {
+    return <DragContainer>
+      <View style={{flex: 1, flexDirection: 'column'}}>
+        <DropZone onDrop={e => console.log("hello")}>
+          <MyDropZoneContent />
+        </DropZone>
+      </View>
+      <View style={{height: 115}}>
+        <ScrollView horizontal={true}>
+          <View style={{justifyContent: 'center', alignItems: 'flex-end', flexDirection: 'row'}}>
+            <Draggy />
+            <Draggy />
+            <Draggy />
+            <Draggy />
+            <Draggy />
+            <Draggy />
+            <Draggy />
           </View>
-            <View style={{height: 115}}>
-              <ScrollView horizontal={true}>
-              <View style={{justifyContent: 'center', alignItems: 'flex-end', flexDirection: 'row'}}>
-                <Draggy />
-                <Draggy />
-                <Draggy />
-                <Draggy />
-                <Draggy />
-                <Draggy />
-                <Draggy />
-              </View>
-              </ScrollView>
-            </View>
-        </DragContainer>
-    }
+        </ScrollView>
+      </View>
+    </DragContainer>
+  }
 }
 
 export default DragDropTest;

@@ -11,7 +11,6 @@ import {
   Text,
   View
 } from 'react-native';
-import PanResponderExample from './PanResponderExample';
 import App from './src/App/App.js';
 
 export default class morkab extends Component {
