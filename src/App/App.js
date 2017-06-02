@@ -19,7 +19,7 @@ class MyDropZoneContent extends React.Component {
     if (dragOver !== this.props.dragOver) LayoutAnimation.easeInEaseOut();
   }
   render() {
-    return <View style={{width: this.props.dragOver ? 110 : 100, height:  this.props.dragOver ? 110 : 100, backgroundColor: '#ddd', alignItems: 'center', justifyContent: 'center'}}>
+    return <View style={{backgroundColor: '#ddd', flexDirection:'column',height:300}}>
       <View>
         <Text>{"LET GO"}</Text>
       </View>
