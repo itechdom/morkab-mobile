@@ -25,8 +25,8 @@ class MyDropZoneContent extends React.Component {
           this.props.page.map((comp)=>{
             let Element = comp.element;
             return <Element
-                {...comp.properties}
-              />
+              {...comp.properties}
+            />
           })
         }
       </Wrapper>

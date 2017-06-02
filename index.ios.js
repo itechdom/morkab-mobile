@@ -11,6 +11,9 @@ import {
   Text,
   View
 } from 'react-native';
+
+import MapViewExample from './src/examples/MapViewExample';
+
 import App from './src/App/App.js';
 import {Morkab as MorkabStore} from './src/Store';
 

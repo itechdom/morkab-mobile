@@ -4,6 +4,7 @@ import {
   Text
 } from 'react-native';
 import * as NativeBase from 'native-base';
+import MapView from 'react-native-maps';
 
 const docWebsite = "https://docs.nativebase.io/Components.html";
 
@@ -155,6 +156,19 @@ export const componentList = [
       children:[
         (<NativeBase.Text>Show Toast</NativeBase.Text>)
       ]
+    }
+  },
+  {
+    "element":MapView,
+    "tag":"MapView",
+    "link":`${docWebsite}`,
+    "properties":{
+      initialRegion:{
+        latitude: 37.78825,
+        longitude: -122.4324,
+        latitudeDelta: 0.0922,
+        longitudeDelta: 0.0421,
+      }
     }
   },
 ];
