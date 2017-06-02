@@ -12,13 +12,13 @@ import {
   View
 } from 'react-native';
 import PanResponderExample from './PanResponderExample';
-import DragDropTest from './DragDropTest/example';
+import App from './src/App/App.js';
 
 export default class morkab extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <DragDropTest />
+        <App />
       </View>
     );
   }

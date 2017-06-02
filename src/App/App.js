@@ -11,7 +11,7 @@ import {
   DragContainer,
   Draggable,
   DropZone
-} from './index'
+} from '../react-native-dnd';
 
 
 class MyDropZoneContent extends React.Component {
@@ -22,20 +22,6 @@ class MyDropZoneContent extends React.Component {
     return <View style={{width: this.props.dragOver ? 110 : 100, height:  this.props.dragOver ? 110 : 100, backgroundColor: '#ddd', alignItems: 'center', justifyContent: 'center'}}>
       <View>
         <Text>{"LET GO"}</Text>
-      </View>
-    </View>
-  }
-}
-
-
-class DeleteZone extends React.Component {
-  componentWillReceiveProps({dragOver}) {
-    if (dragOver !== this.props.dragOver) LayoutAnimation.easeInEaseOut();
-  }
-  render() {
-    return <View style={{top: this.props.dragOver ? 0: -100, height: 100, backgroundColor: 'red', alignItems: 'center', justifyContent: 'center'}}>
-      <View>
-        <Text>{'DELETE'}</Text>
       </View>
     </View>
   }
@@ -69,9 +55,6 @@ class DragDropTest extends React.Component {
     }
     render() {
         return <DragContainer>
-        <DropZone style={{position: 'absolute', top: 0, left: 0, right: 0, height: 100}} onDrop={() => Alert.alert('DELETE!!!')}>
-          <DeleteZone />
-        </DropZone>
         <View style={{flex: 1, padding: 20, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around'}}>
              <DropZone onDrop={e => console.log("hello")}>
               <MyDropZoneContent />
