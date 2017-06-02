@@ -19,7 +19,8 @@ class MyDropZoneContent extends React.Component {
   }
   render() {
     let Wrapper = this.props.wrapper;
-    return <View style={{backgroundColor: '#ddd', flexDirection:'column',height:300,width:300}}>
+    let {height,width} = this.props;
+    return <View style={{backgroundColor: '#ddd', flexDirection:'column',height:height,width:width}}>
       <Wrapper>
         {
           this.props.page.map((comp)=>{
@@ -64,13 +65,14 @@ class App extends React.Component {
     this.displayName = 'DragDropTest';
   }
   render() {
+    let {height,width} = this.props.store.Dimensions;
     return <DragContainer>
       <View style={{flex: 1, flexDirection: 'column'}}>
-        <DropZone onDrop={comp => this.props.onDrop(comp)}>
+        <DropZone height={height} width={width} onDrop={comp => this.props.onDrop(comp)}>
           <MyDropZoneContent wrapper={this.props.store.wrapper} page={this.props.store.page} />
         </DropZone>
       </View>
-      <View style={{height: 115}}>
+      <View style={{height: this.props.store.toolbarHeight}}>
         <ScrollView horizontal={true}>
           <View style={{justifyContent: 'center', alignItems: 'flex-end', flexDirection: 'row'}}>
             {

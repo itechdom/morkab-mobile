@@ -1,4 +1,5 @@
 import {extendObservable, observable, computed, autorun, action, reaction, toJS} from 'mobx';
+import {Dimensions} from 'react-native';
 import componentList from '../component-list';
 import uuidV4 from 'uuid/v4';
 
@@ -9,6 +10,7 @@ export class Morkab {
       componentList : [],
       wrapper:{},
       library: [],
+      toolbarHeight:110,
       page:[],
       exportedPage:"",
       exportedPageDialog:"",
@@ -32,6 +34,13 @@ export class Morkab {
         //to prevent properties from being updated
         let newProp = toJS(properties);
         this.page.push(new Component(element,tag,link,newProp,serverLink,externalHTML));
+      }),
+      Dimensions:computed(()=>{
+        let {height, width} = Dimensions.get('window');
+        return {
+          height: height - this.toolbarHeight,
+          width:width
+        }
       })
     })
   }
