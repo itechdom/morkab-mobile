@@ -115,5 +115,46 @@ export const componentList = [
         </NativeBase.Card>
       }
     }
-  }
+  },
+  {
+    "element":NativeBase.Header,
+    "tag":"Segment Header",
+    "link":`${docWebsite}`,
+    "properties":{
+      children:[
+        (<NativeBase.Left>
+          <NativeBase.Button transparent>
+            <NativeBase.Icon name="arrow-back" />
+          </NativeBase.Button>
+        </NativeBase.Left>),
+        (<NativeBase.Body>
+          <NativeBase.Segment>
+            <NativeBase.Button first><NativeBase.Text>Puppies</NativeBase.Text></NativeBase.Button>
+            <NativeBase.Button last active><NativeBase.Text>Cubs</NativeBase.Text></NativeBase.Button>
+          </NativeBase.Segment>
+        </NativeBase.Body>),
+        (<NativeBase.Right>
+          <NativeBase.Button transparent>
+            <NativeBase.Icon name="search" />
+          </NativeBase.Button>
+        </NativeBase.Right>)
+      ]
+    }
+  },
+  {
+    "element":NativeBase.Button,
+    "tag":"Toast",
+    "link":`${docWebsite}`,
+    "properties":{
+      onPress:()=>{NativeBase.Toast.show({
+        supportedOrientations: ['potrait','landscape'],
+        text: 'Wrong password!',
+        position: 'bottom',
+        buttonText: 'Okay'
+      })},
+      children:[
+        (<NativeBase.Text>Show Toast</NativeBase.Text>)
+      ]
+    }
+  },
 ];
