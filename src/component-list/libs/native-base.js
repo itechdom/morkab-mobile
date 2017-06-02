@@ -18,6 +18,11 @@ const iconData = [
   "favorite"
 ]
 
+const objectList = [
+  {text:"example1"},
+  {text:"example2"}
+]
+
 export const wrapper = ({children})=>{return<NativeBase.Container><NativeBase.Content>{children}</NativeBase.Content></NativeBase.Container>};
 
 export const componentList = [
@@ -53,4 +58,62 @@ export const componentList = [
       ]
     }
   },
+  {
+    "element":NativeBase.Footer,
+    "tag":"Footer",
+    "link":`${docWebsite}`,
+    "properties":{
+      children:[
+        (<NativeBase.FooterTab>
+          <NativeBase.Button active badge vertical>
+            <NativeBase.Badge><NativeBase.Text>51</NativeBase.Text></NativeBase.Badge>
+            <NativeBase.Icon active name="navigate" />
+            <NativeBase.Text>Tab1</NativeBase.Text>
+          </NativeBase.Button>
+          <NativeBase.Button badge vertical>
+            <NativeBase.Badge><NativeBase.Text>51</NativeBase.Text></NativeBase.Badge>
+            <NativeBase.Icon name="navigate" />
+            <NativeBase.Text>Tab2</NativeBase.Text>
+          </NativeBase.Button>
+        </NativeBase.FooterTab>)
+      ]
+    }
+  },
+  {
+    "element":NativeBase.Button,
+    "tag":"Actionsheet",
+    "link":`${docWebsite}`,
+    "properties":{
+      onPress:()=>{NativeBase.ActionSheet.show(
+        {
+          options: listData,
+          cancelButtonIndex: 0,
+          destructiveButtonIndex: 1,
+          title: 'ActionSheet'
+        },
+        (buttonIndex) => {
+          console.log(buttonIndex);
+        }
+      )},
+      children:[
+        (<NativeBase.Text>Actionsheet</NativeBase.Text>)
+      ]
+    }
+  },
+  {
+    "element":NativeBase.DeckSwiper,
+    "tag":"DeckSwiper",
+    "link":`${docWebsite}`,
+    "properties":{
+      dataSource:objectList,
+      renderItem:(item)=>{
+        return <NativeBase.Card style={{ elevation: 3 }}>
+          <NativeBase.CardItem>
+            <NativeBase.Icon name="heart" style={{ color: '#ED4A6A' }} />
+            <NativeBase.Text>{item.title}</NativeBase.Text>
+          </NativeBase.CardItem>
+        </NativeBase.Card>
+      }
+    }
+  }
 ];
