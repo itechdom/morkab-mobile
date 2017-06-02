@@ -21,7 +21,6 @@ class MyDropZoneContent extends React.Component {
   render() {
     return <View style={{backgroundColor: '#ddd', flexDirection:'column',height:300}}>
       <View>
-        <Text>{"LET GO"}</Text>
       </View>
     </View>
   }
@@ -40,7 +39,7 @@ class DraggyInner extends React.Component {
 
 class Draggy extends React.Component {
   render() {
-    return <Draggable data="Whatevs" style={{margin: 7.5}}>
+    return <Draggable data={this.props.data} style={{margin: 7.5}}>
       <DropZone>
         <DraggyInner />
       </DropZone>
@@ -56,20 +55,20 @@ class DragDropTest extends React.Component {
   render() {
     return <DragContainer>
       <View style={{flex: 1, flexDirection: 'column'}}>
-        <DropZone onDrop={e => console.log("hello")}>
+        <DropZone onDrop={data => console.log(data)}>
           <MyDropZoneContent />
         </DropZone>
       </View>
       <View style={{height: 115}}>
         <ScrollView horizontal={true}>
           <View style={{justifyContent: 'center', alignItems: 'flex-end', flexDirection: 'row'}}>
-            <Draggy />
-            <Draggy />
-            <Draggy />
-            <Draggy />
-            <Draggy />
-            <Draggy />
-            <Draggy />
+            <Draggy data="hello" />
+            <Draggy data="hey" />
+            <Draggy data="hello" />
+            <Draggy data="hello" />
+            <Draggy data="hello" />
+            <Draggy data="hello" />
+            <Draggy data="hello" />
           </View>
         </ScrollView>
       </View>

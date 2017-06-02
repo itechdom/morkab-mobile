@@ -29,3 +29,19 @@ export class ScreenshotOrganizer {
     })
   }
 }
+
+
+export class Component {
+  constructor(element,tag,link,properties,serverLink,externalHTML){
+    this.id = uuidV4();
+    this.tag = tag;
+    this.link = link;
+    this.element = element;
+    this.serverLink= serverLink;
+    extendObservable(this, {
+      properties:properties,
+      externalHTML:externalHTML,
+      position:position
+    })
+  }
+}
