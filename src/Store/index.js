@@ -7,6 +7,7 @@ export class Morkab {
   constructor() {
     extendObservable(this, {
       componentList : [],
+      wrapper:{},
       library: [],
       page:[],
       exportedPage:"",
@@ -37,13 +38,12 @@ export class Morkab {
 
   getComponentList(){
     this.componentList = componentList.map((library)=>{
+      this.wrapper = library.wrapper;
       return library.componentList.map((component)=>{
         return new Component(component.element,component.tag,component.link,component.properties);
       });
     });
   }
-
-
 
 }
 

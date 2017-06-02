@@ -31,4 +31,26 @@ export const componentList = [
       ]
     }
   },
+  {
+    "element":NativeBase.Header,
+    "tag":"header",
+    "link":`${docWebsite}`,
+    "properties":{
+      children:[
+        (<NativeBase.Left>
+          <NativeBase.Button transparent>
+            <NativeBase.Icon name='arrow-back' />
+          </NativeBase.Button>
+        </NativeBase.Left>),
+        (<NativeBase.Body>
+          <Text>Header</Text>
+        </NativeBase.Body>),
+        (<NativeBase.Right>
+          <NativeBase.Button transparent>
+            <NativeBase.Icon name='menu' />
+          </NativeBase.Button>
+        </NativeBase.Right>)
+      ]
+    }
+  },
 ];

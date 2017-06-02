@@ -15,20 +15,21 @@ import {
 
 class MyDropZoneContent extends React.Component {
   componentWillReceiveProps({dragOver}) {
-    if (dragOver !== this.props.dragOver) LayoutAnimation.easeInEaseOut();
+    //if (dragOver !== this.props.dragOver) LayoutAnimation.easeInEaseOut();
   }
   render() {
+    let Wrapper = this.props.wrapper;
     return <View style={{backgroundColor: '#ddd', flexDirection:'column',height:300,width:300}}>
-      <ScrollView>
+      <Wrapper>
         {
           this.props.page.map((comp)=>{
             let Element = comp.element;
             return <Element
-              {...comp.properties}
-            />
+                {...comp.properties}
+              />
           })
         }
-      </ScrollView>
+      </Wrapper>
     </View>
   }
 }
@@ -46,7 +47,6 @@ class DraggyInner extends React.Component {
     </View>
   }
 }
-
 
 class Draggy extends React.Component {
   render() {
@@ -67,7 +67,7 @@ class App extends React.Component {
     return <DragContainer>
       <View style={{flex: 1, flexDirection: 'column'}}>
         <DropZone onDrop={comp => this.props.onDrop(comp)}>
-          <MyDropZoneContent page={this.props.store.page} />
+          <MyDropZoneContent wrapper={this.props.store.wrapper} page={this.props.store.page} />
         </DropZone>
       </View>
       <View style={{height: 115}}>
@@ -75,7 +75,7 @@ class App extends React.Component {
           <View style={{justifyContent: 'center', alignItems: 'flex-end', flexDirection: 'row'}}>
             {
               this.props.store.componentList[0].map((comp)=>{
-                return <Draggy comp={comp} />
+                return <Draggy comp={comp}/>
               })
             }
           </View>
