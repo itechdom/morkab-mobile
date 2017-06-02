@@ -13,6 +13,7 @@ import {
   DropZone
 } from '../react-native-dnd';
 
+import {Morkab} from '../Store';
 
 class MyDropZoneContent extends React.Component {
   componentWillReceiveProps({dragOver}) {

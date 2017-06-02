@@ -1,7 +1,7 @@
 import {extendObservable, observable, computed, autorun, action, reaction, toJS} from 'mobx';
 import uuidV4 from 'uuid/v4';
 
-export class ScreenshotOrganizer {
+export class Morkab {
 
   constructor() {
     extendObservable(this, {
@@ -28,8 +28,12 @@ export class ScreenshotOrganizer {
       ]
     })
   }
-}
 
+  getComponentList(){
+
+  }
+
+}
 
 export class Component {
   constructor(element,tag,link,properties,serverLink,externalHTML){
