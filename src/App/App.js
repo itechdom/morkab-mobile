@@ -13,16 +13,22 @@ import {
   DropZone
 } from '../react-native-dnd';
 
-import {Morkab} from '../Store';
-
 class MyDropZoneContent extends React.Component {
   componentWillReceiveProps({dragOver}) {
     if (dragOver !== this.props.dragOver) LayoutAnimation.easeInEaseOut();
   }
   render() {
-    return <View style={{backgroundColor: '#ddd', flexDirection:'column',height:300}}>
-      <View>
-      </View>
+    return <View style={{backgroundColor: '#ddd', flexDirection:'column',height:300,width:300}}>
+      <ScrollView>
+        {
+          this.props.page.map((comp)=>{
+            let Element = comp.element;
+            return <Element
+              {...comp.properties}
+            />
+          })
+        }
+      </ScrollView>
     </View>
   }
 }
@@ -33,22 +39,26 @@ class DraggyInner extends React.Component {
       return <View style={{height: 100, width: 100, backgroundColor: 'green'}} />
     }
     let shadows = {shadowColor: 'black', shadowOffset: {width: 0, height: 20}, shadowOpacity: .5, shadowRadius: 20, opacity: .5};
-    return <View style={[{height: 100, width: 100, backgroundColor: this.props.ghost ? '#777' : '#777'}, this.props.dragging ? shadows : null]} />
+    return <View style={[{height: 100, width: 100, backgroundColor: this.props.ghost ? '#777' : '#777'}, this.props.dragging ? shadows : null]}>
+      <Text>
+        {this.props.title}
+      </Text>
+    </View>
   }
 }
 
 
 class Draggy extends React.Component {
   render() {
-    return <Draggable data={this.props.data} style={{margin: 7.5}}>
+    return <Draggable data={this.props.comp} style={{margin: 7.5}}>
       <DropZone>
-        <DraggyInner />
+        <DraggyInner title={`${this.props.comp.tag}`} />
       </DropZone>
     </Draggable>
   }
 }
 
-class DragDropTest extends React.Component {
+class App extends React.Component {
   constructor(props) {
     super(props);
     this.displayName = 'DragDropTest';
@@ -56,20 +66,18 @@ class DragDropTest extends React.Component {
   render() {
     return <DragContainer>
       <View style={{flex: 1, flexDirection: 'column'}}>
-        <DropZone onDrop={data => console.log(data)}>
-          <MyDropZoneContent />
+        <DropZone onDrop={comp => this.props.onDrop(comp)}>
+          <MyDropZoneContent page={this.props.store.page} />
         </DropZone>
       </View>
       <View style={{height: 115}}>
         <ScrollView horizontal={true}>
           <View style={{justifyContent: 'center', alignItems: 'flex-end', flexDirection: 'row'}}>
-            <Draggy data="hello" />
-            <Draggy data="hey" />
-            <Draggy data="hello" />
-            <Draggy data="hello" />
-            <Draggy data="hello" />
-            <Draggy data="hello" />
-            <Draggy data="hello" />
+            {
+              this.props.store.componentList[0].map((comp)=>{
+                return <Draggy comp={comp} />
+              })
+            }
           </View>
         </ScrollView>
       </View>
@@ -77,4 +85,4 @@ class DragDropTest extends React.Component {
   }
 }
 
-export default DragDropTest;
+export default App;

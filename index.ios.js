@@ -12,12 +12,19 @@ import {
   View
 } from 'react-native';
 import App from './src/App/App.js';
+import {Morkab as MorkabStore} from './src/Store';
 
-export default class morkab extends Component {
+let morkabStore = new MorkabStore();
+morkabStore.getComponentList();
+
+export default class Morkab extends Component {
+  constructor(props){
+    super(props);
+  }
   render() {
     return (
       <View style={styles.container}>
-        <App />
+        <App store={morkabStore} onDrop={(comp)=>morkabStore.addComponentToPage(comp)} />
       </View>
     );
   }
@@ -42,4 +49,4 @@ const styles = StyleSheet.create({
   },
 });
 
-AppRegistry.registerComponent('morkab', () => morkab);
+AppRegistry.registerComponent('morkab', () => Morkab);

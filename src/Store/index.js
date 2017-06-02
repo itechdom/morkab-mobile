@@ -1,4 +1,5 @@
 import {extendObservable, observable, computed, autorun, action, reaction, toJS} from 'mobx';
+import componentList from '../component-list';
 import uuidV4 from 'uuid/v4';
 
 export class Morkab {
@@ -24,14 +25,25 @@ export class Morkab {
         "#9966ff",
         "#ffcc66",
         "#000099",
-        "#999966"
-      ]
+        "#999966"],
+      addComponentToPage:action((comp)=>{
+        let {element,tag,link,properties,serverLink,externalHTML} = comp;
+        //to prevent properties from being updated
+        let newProp = toJS(properties);
+        this.page.push(new Component(element,tag,link,newProp,serverLink,externalHTML));
+      })
     })
   }
 
   getComponentList(){
-
+    this.componentList = componentList.map((library)=>{
+      return library.componentList.map((component)=>{
+        return new Component(component.element,component.tag,component.link,component.properties);
+      });
+    });
   }
+
+
 
 }
 
@@ -44,8 +56,7 @@ export class Component {
     this.serverLink= serverLink;
     extendObservable(this, {
       properties:properties,
-      externalHTML:externalHTML,
-      position:position
+      externalHTML:externalHTML
     })
   }
 }
